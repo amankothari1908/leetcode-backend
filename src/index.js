@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const { PORT } = require("../src/config/server.config");
+const apiRouter = require("./routes");
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(bodyParser.text());
 app.get("/ping", (req, res) => {
   return res.json({ message: "Leetcode problem service is live" });
 });
+
+app.use("/api", apiRouter);
 
 app.listen(PORT, () => {
   console.log(`Server Started at PORT: ${PORT}`);
