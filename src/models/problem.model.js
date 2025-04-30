@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+import mongoose, { Schema, Model } from "mongoose";
 
 // Defining the Schema with Vaildation
-const problemSchema = new mongoose.Schema({
+const problemSchema = new Schema({
   title: {
     type: String,
     required: [true, "Title can not be empty"],
@@ -34,6 +34,6 @@ const problemSchema = new mongoose.Schema({
 });
 
 // Modeling the schema
-const Problem = mongoose.Model("Problem", problemSchema);
+const Problem = mongoose.model("Problem", problemSchema);
 
-module.exports = Problem;
+export default Problem;
