@@ -1,3 +1,4 @@
+const logger = require("../config/logger.config");
 const NotFoundError = require("../errors/notFound.error");
 const { Problem } = require("../models");
 
@@ -44,6 +45,9 @@ class ProblemRepository {
     try {
       const response = await Problem.deleteOne({ _id: id });
       if (response.deletedCount == 0) {
+        logger.error(
+          `the delete problem API failed as problem id ${id} does not found`
+        );
         throw new NotFoundError("Problem", id);
       }
       return response;
